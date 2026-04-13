@@ -3,98 +3,80 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  ArrowRight,
-  Workflow,
-  Brain,
-  MessageSquare,
-  Database,
-  TrendingUp,
+  Phone,
+  Calendar,
+  Clock,
+  BookOpen,
+  Users,
   Plug,
   CheckCircle2,
+  ArrowRight,
   Zap,
-  Shield,
-  Clock,
-  Users,
+  FileText,
+  Bell,
+  ThumbsUp,
 } from "lucide-react";
 import { SectionReveal } from "@/components/section-reveal";
 
 const services = [
   {
-    icon: Workflow,
-    title: "Workflow Automation",
-    description:
-      "Eliminate repetitive manual tasks by connecting your entire tool stack into seamless, intelligent workflows that run around the clock.",
+    icon: Phone,
+    title: "Never Miss Another Enquiry",
     bullets: [
-      "n8n, Make, and Zapier integrations",
-      "Multi-step conditional logic flows",
-      "Event-driven triggers & webhooks",
-      "Cross-platform data synchronization",
-      "Error handling & retry mechanisms",
+      "Instant text response to every missed call",
+      "24/7 enquiry handling — nights, weekends, bank holidays",
+      "Handles the conversation so you don't have to",
+      "Works with your existing phone number",
     ],
   },
   {
-    icon: Brain,
-    title: "Custom AI Agents",
-    description:
-      "Autonomous AI agents that understand your business context, process complex data, and make intelligent decisions without human intervention.",
+    icon: Calendar,
+    title: "Turn Missed Calls Into Booked Jobs",
     bullets: [
-      "LLM-powered decision-making agents",
-      "Automated data extraction & enrichment",
-      "Customer service & ticket routing",
-      "Document analysis & summarization",
-      "Continuous learning from your data",
+      "Qualifies the lead and books directly into your calendar",
+      "Sends you a job summary after each conversation",
+      "Urgency detection — flags hot leads immediately",
+      "No back-and-forth needed",
     ],
   },
   {
-    icon: MessageSquare,
-    title: "Chatbot Development",
-    description:
-      "Conversational AI built for your brand — trained on your knowledge base to handle sales inquiries, support tickets, and user onboarding at scale.",
+    icon: Clock,
+    title: "Save Hours of Admin Every Week",
     bullets: [
-      "Sales & lead qualification bots",
-      "Customer support automation",
-      "Onboarding & product tours",
-      "Multi-channel deployment (web, Slack, WhatsApp)",
-      "CRM integration & handoff to humans",
+      "Handles repetitive customer questions automatically",
+      "Reminds customers of upcoming appointments",
+      "Reduces interruptions while you're on a job",
+      "Frees up your time for higher-value work",
     ],
   },
   {
-    icon: Database,
-    title: "Data Pipeline Automation",
-    description:
-      "Reliable ETL pipelines that move, transform, and sync your data in real time — keeping every system in your stack up to date and accurate.",
+    icon: BookOpen,
+    title: "Direct Calendar Booking",
     bullets: [
-      "Extract, transform, load (ETL) pipelines",
-      "Real-time and batch data processing",
-      "Database-to-database migrations",
-      "Data validation & deduplication",
-      "Automated reporting & dashboards",
+      "Customers book themselves into your schedule",
+      "Integrates with your existing calendar",
+      "You approve or adjust — complete control",
+      "No more phone tag",
     ],
   },
   {
-    icon: TrendingUp,
-    title: "Process Optimization",
-    description:
-      "We audit your existing operations, map every workflow, and redesign processes for maximum efficiency — uncovering automation opportunities you never knew existed.",
+    icon: Users,
+    title: "Keeps Track of Every Customer",
     bullets: [
-      "End-to-end workflow audit",
-      "Bottleneck identification & removal",
-      "Process documentation & mapping",
-      "ROI analysis & automation roadmap",
-      "Change management support",
+      "Remembers past conversations per customer",
+      "Personalised follow-ups as standard",
+      "Knows returning customers vs new leads",
+      "Never asks a customer the same question twice",
     ],
   },
   {
     icon: Plug,
-    title: "Integration Services",
-    description:
-      "Custom API development and purpose-built connectors that bridge the gap between legacy systems, SaaS tools, and internal platforms.",
+    title: "Connects With Your Existing Tools",
     bullets: [
-      "REST & GraphQL API development",
-      "Custom connectors for legacy systems",
-      "OAuth & authentication handling",
-      "Third-party SaaS integrations",
-      "Real-time event streaming",
+      "Works with your phone system",
+      "Syncs with your existing calendar",
+      "Fits around how you already work",
+      "No new apps to learn — set up in under 48 hours",
     ],
   },
 ];
@@ -102,27 +84,27 @@ const services = [
 const whyUs = [
   {
     icon: Zap,
-    title: "Fast Delivery",
+    title: "Fast Setup",
     description:
-      "Most automation projects go live within 2–4 weeks. We move quickly so you see ROI fast.",
+      "Up and running within 48 hours. No lengthy onboarding, no waiting around.",
   },
   {
-    icon: Shield,
-    title: "Enterprise-Grade Security",
+    icon: FileText,
+    title: "No Long Contracts",
     description:
-      "All automations are built with SOC 2 standards in mind — encrypted, audited, and access-controlled.",
+      "Month-to-month, no tie-ins. Stay because it works, not because you're locked in.",
   },
   {
-    icon: Clock,
-    title: "Always-On Support",
+    icon: Bell,
+    title: "You Stay in Control",
     description:
-      "24/7 monitoring and dedicated support means your automations never go down unnoticed.",
+      "Nothing happens without you being notified. You're always in the loop.",
   },
   {
-    icon: Users,
-    title: "True Partnership",
+    icon: ThumbsUp,
+    title: "Built for the UK Market",
     description:
-      "We don't disappear after launch. We iterate, optimize, and grow your automations alongside your business.",
+      "Designed around how UK tradespeople and service businesses actually operate.",
   },
 ];
 
@@ -130,20 +112,17 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-[60vh] flex items-center pt-32 pb-20 overflow-hidden grid-bg">
-        <div className="absolute top-10 left-1/3 w-[500px] h-[400px] bg-cyan/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-[350px] h-[350px] bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
-
+      <section className="relative min-h-[55vh] flex items-center pt-32 pb-20 overflow-hidden bg-white">
         <div className="max-w-7xl mx-auto px-6 w-full">
           <div className="max-w-3xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan/5 border border-cyan/20 text-cyan text-sm font-medium mb-6"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan/10 border border-cyan/20 text-cyan text-sm font-medium mb-6"
             >
-              <Zap size={14} />
-              What We Build
+              <Phone size={14} />
+              Built for Tradespeople
             </motion.div>
 
             <motion.h1
@@ -152,8 +131,7 @@ export default function ServicesPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight text-navy"
             >
-              Our{" "}
-              <span className="gradient-text">Services</span>
+              Stop Losing Jobs to <span className="text-cyan">Missed Calls</span>
             </motion.h1>
 
             <motion.p
@@ -162,8 +140,8 @@ export default function ServicesPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mt-6 text-lg text-slate leading-relaxed max-w-xl mx-auto"
             >
-              From one-off integrations to full-scale AI transformation — we
-              design and deploy automation that compounds in value over time.
+              Lynk Systems handles your enquiries, books your jobs, and keeps
+              customers updated — so you can focus on the work, not the phone.
             </motion.p>
 
             <motion.div
@@ -172,21 +150,15 @@ export default function ServicesPage() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="mt-8 flex flex-wrap items-center justify-center gap-4"
             >
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-navy text-white font-semibold rounded-xl hover:bg-navy-light transition-all duration-200 hover:shadow-xl hover:shadow-navy/20 active:scale-[0.97] cursor-pointer group"
-              >
-                Start a Project
+              <Link href="/contact" className="btn-primary group">
+                Book a Free Demo
                 <ArrowRight
                   size={18}
                   className="group-hover:translate-x-1 transition-transform"
                 />
               </Link>
-              <Link
-                href="#services"
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-navy font-semibold rounded-xl border-2 border-border hover:border-cyan/30 hover:bg-cyan/5 transition-all duration-200 active:scale-[0.97] cursor-pointer"
-              >
-                Explore Services
+              <Link href="#services" className="btn-outline">
+                See What We Do
               </Link>
             </motion.div>
           </div>
@@ -194,17 +166,16 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Grid */}
-      <section id="services" className="py-24">
+      <section id="services" className="section-alt py-24">
         <div className="max-w-7xl mx-auto px-6">
           <SectionReveal>
             <div className="text-center max-w-2xl mx-auto mb-16">
               <h2 className="text-3xl lg:text-4xl font-bold text-navy">
-                End-to-end automation,{" "}
-                <span className="gradient-text">built for you</span>
+                Everything You Need to Win More Work
               </h2>
               <p className="mt-4 text-lg text-slate">
-                Every service is custom-scoped to your stack, your goals, and
-                your timeline — no cookie-cutter templates.
+                Six ways Lynk Systems puts more money in your pocket and more
+                hours back in your day.
               </p>
             </div>
           </SectionReveal>
@@ -215,34 +186,25 @@ export default function ServicesPage() {
                 <motion.div
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.2 }}
-                  className="glass rounded-2xl p-8 hover:shadow-lg hover:shadow-cyan/5 transition-shadow duration-300 group h-full flex flex-col"
+                  className="card p-7 card-hover h-full flex flex-col"
                 >
-                  {/* Icon + Title */}
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-cyan/10 flex items-center justify-center shrink-0 group-hover:bg-cyan/20 transition-colors duration-300">
+                  <div className="flex items-start gap-4 mb-5">
+                    <div className="w-12 h-12 rounded-xl bg-cyan/10 flex items-center justify-center shrink-0">
                       <service.icon size={24} className="text-cyan" />
                     </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-navy">
-                        {service.title}
-                      </h3>
-                    </div>
+                    <h3 className="text-xl font-bold text-navy leading-snug pt-1.5">
+                      {service.title}
+                    </h3>
                   </div>
 
-                  {/* Description */}
-                  <p className="text-slate leading-relaxed mb-6">
-                    {service.description}
-                  </p>
-
-                  {/* Bullet points */}
-                  <ul className="space-y-2 mt-auto">
+                  <ul className="space-y-3 mt-auto">
                     {service.bullets.map((bullet) => (
                       <li
                         key={bullet}
-                        className="flex items-start gap-2.5 text-sm text-slate"
+                        className="flex items-start gap-3 text-sm text-slate"
                       >
                         <CheckCircle2
-                          size={15}
+                          size={16}
                           className="text-cyan shrink-0 mt-0.5"
                         />
                         {bullet}
@@ -257,17 +219,15 @@ export default function ServicesPage() {
       </section>
 
       {/* Why Lynk Systems */}
-      <section className="py-24 bg-muted/30 grid-bg">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <SectionReveal>
             <div className="text-center max-w-2xl mx-auto mb-16">
               <h2 className="text-3xl lg:text-4xl font-bold text-navy">
-                Why{" "}
-                <span className="gradient-text">Lynk Systems</span>
+                Why Lynk Systems
               </h2>
               <p className="mt-4 text-lg text-slate">
-                We&apos;re not just implementers — we&apos;re automation
-                partners invested in your long-term success.
+                No fuss, no jargon. Just a system that works from day one.
               </p>
             </div>
           </SectionReveal>
@@ -278,12 +238,12 @@ export default function ServicesPage() {
                 <motion.div
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.2 }}
-                  className="glass rounded-2xl p-6 hover:shadow-lg hover:shadow-cyan/5 transition-shadow duration-300 group text-center"
+                  className="card p-7 card-hover text-center h-full"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-cyan/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-cyan/20 transition-colors duration-300">
+                  <div className="w-14 h-14 rounded-2xl bg-cyan/10 flex items-center justify-center mx-auto mb-4">
                     <item.icon size={26} className="text-cyan" />
                   </div>
-                  <h3 className="text-lg font-semibold text-navy mb-2">
+                  <h3 className="text-lg font-bold text-navy mb-2">
                     {item.title}
                   </h3>
                   <p className="text-sm text-slate leading-relaxed">
@@ -296,129 +256,49 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Process strip */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <SectionReveal>
-            <div className="text-center max-w-xl mx-auto mb-14">
-              <h2 className="text-3xl font-bold text-navy">
-                Our delivery process
-              </h2>
-              <p className="mt-3 text-slate">
-                Structured, transparent, and built to ship fast.
-              </p>
-            </div>
-          </SectionReveal>
-
-          <div className="grid md:grid-cols-4 gap-10">
-            {[
-              {
-                step: "01",
-                title: "Discovery",
-                desc: "We map your workflows, goals, and tech stack to uncover the highest-value automation opportunities.",
-              },
-              {
-                step: "02",
-                title: "Design",
-                desc: "Our team architects the solution — diagrams, data flows, and a full spec before a single line is written.",
-              },
-              {
-                step: "03",
-                title: "Build & Test",
-                desc: "Rapid development with staged testing environments and your team in the loop throughout.",
-              },
-              {
-                step: "04",
-                title: "Launch & Iterate",
-                desc: "We deploy, monitor, and keep optimizing — automations evolve as your business does.",
-              },
-            ].map((item, i) => (
-              <SectionReveal key={item.step} delay={i * 0.12}>
-                <div className="relative">
-                  <span className="text-7xl font-bold text-cyan/10 leading-none">
-                    {item.step}
-                  </span>
-                  <h3 className="mt-2 text-xl font-semibold text-navy">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-slate leading-relaxed text-sm">
-                    {item.desc}
-                  </p>
-                </div>
-              </SectionReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
-      <section className="py-24 grid-bg">
+      <section className="section-alt py-24">
         <div className="max-w-7xl mx-auto px-6">
           <SectionReveal>
-            <div className="relative rounded-3xl bg-navy p-12 lg:p-16 text-center overflow-hidden">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-cyan/20 rounded-full blur-[120px] pointer-events-none" />
-              <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-accent/20 rounded-full blur-[100px] pointer-events-none" />
+            <div className="rounded-3xl bg-navy p-12 lg:p-16 text-center">
+              <motion.h2
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-3xl lg:text-4xl font-bold text-white mb-4"
+              >
+                See It Working on Your Business
+              </motion.h2>
 
-              <div className="relative z-10">
-                <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <p className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan/10 border border-cyan/20 text-cyan text-sm font-medium mb-6">
-                    <Zap size={14} />
-                    Let&apos;s talk automation
-                  </p>
-                </motion.div>
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-lg text-slate max-w-xl mx-auto mb-8 opacity-80"
+              >
+                Book a free 30-minute demo. We'll show you exactly how Lynk
+                Systems fits around your work — no hard sell, no obligation.
+              </motion.p>
 
-                <motion.h2
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="text-3xl lg:text-4xl font-bold text-white mb-4"
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <Link
+                  href="/contact"
+                  className="btn-cyan inline-flex items-center gap-2 group"
                 >
-                  Ready to see what&apos;s possible?
-                </motion.h2>
-
-                <motion.p
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-lg text-slate-light max-w-xl mx-auto mb-8"
-                >
-                  Book a free 30-minute strategy call. We&apos;ll analyse your
-                  workflows and show you exactly where automation can save you
-                  time and money — no obligation.
-                </motion.p>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="flex flex-wrap items-center justify-center gap-4"
-                >
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-cyan text-navy font-bold rounded-xl hover:bg-cyan-light transition-all duration-200 hover:shadow-xl hover:shadow-cyan/30 active:scale-[0.97] cursor-pointer group"
-                  >
-                    Book a Free Strategy Call
-                    <ArrowRight
-                      size={18}
-                      className="group-hover:translate-x-1 transition-transform"
-                    />
-                  </Link>
-                  <Link
-                    href="/demo"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 text-white font-semibold rounded-xl hover:bg-white/20 transition-all duration-200 active:scale-[0.97] cursor-pointer"
-                  >
-                    View Live Demo
-                  </Link>
-                </motion.div>
-              </div>
+                  Book a Free Demo
+                  <ArrowRight
+                    size={18}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
+                </Link>
+              </motion.div>
             </div>
           </SectionReveal>
         </div>

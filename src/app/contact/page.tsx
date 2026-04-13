@@ -7,12 +7,9 @@ import {
   Mail,
   Phone,
   MapPin,
-  Send,
   ArrowRight,
   CheckCircle2,
   ChevronDown,
-  Clock,
-  Calendar,
 } from "lucide-react";
 import { SectionReveal } from "@/components/section-reveal";
 
@@ -21,33 +18,33 @@ import { SectionReveal } from "@/components/section-reveal";
 const faqs = [
   {
     id: 1,
-    question: "How quickly can you implement an automation solution?",
+    question: "What happens on the demo?",
     answer:
-      "Most projects are scoped and delivered within 2–6 weeks depending on complexity. Simple workflow automations can be live in as little as 3–5 business days. We'll give you a precise timeline during your discovery call.",
+      "We'll walk you through the system live, show you how the missed call → text response works, and answer any questions. No hard sell.",
   },
   {
     id: 2,
-    question: "Do I need technical knowledge to work with you?",
+    question: "How long does setup take?",
     answer:
-      "Not at all. We handle all the technical heavy lifting — from architecture to deployment. You focus on your business goals; we translate them into working automations. We explain everything in plain English throughout the process.",
+      "Most businesses are set up and running within 48 hours of signing up.",
   },
   {
     id: 3,
-    question: "What tools and platforms do you integrate with?",
+    question: "Do I need to change anything about how I work?",
     answer:
-      "We integrate with virtually any platform that has an API — including CRMs (HubSpot, Salesforce), project tools (Notion, Asana, Linear), communication platforms (Slack, Teams), e-commerce (Shopify, WooCommerce), and hundreds more via Zapier, Make, or custom code.",
+      "Nothing changes on your end. It plugs into your existing phone number and calendar.",
   },
   {
     id: 4,
-    question: "What does the ongoing support look like?",
+    question: "What if I'm not happy?",
     answer:
-      "All projects include a 30-day post-launch support window at no extra cost. After that, we offer flexible retainer plans so your automations stay maintained, monitored, and improved as your business evolves.",
+      "No long-term contracts. Cancel anytime, no questions asked.",
   },
   {
     id: 5,
-    question: "How is pricing structured?",
+    question: "Do you work with [my type of business]?",
     answer:
-      "We work on a fixed-project basis so you always know what you're paying upfront — no surprise invoices. Pricing scales with scope. Book a free call and we'll give you a transparent quote within 24 hours.",
+      "If you receive calls from customers and sometimes miss them, we can help. Book a demo and we'll confirm in 5 minutes.",
   },
 ];
 
@@ -59,20 +56,20 @@ function FaqItem({ faq }: { faq: (typeof faqs)[0] }) {
   return (
     <motion.div
       layout
-      className="glass rounded-2xl border border-slate-200/60 overflow-hidden"
+      className="card p-7 overflow-hidden"
     >
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left group"
+        className="w-full flex items-center justify-between gap-4 text-left group"
         aria-expanded={open}
       >
-        <span className="font-semibold text-navy text-base leading-snug group-hover:text-cyan-600 transition-colors duration-200">
+        <span className="font-semibold text-navy text-base leading-snug">
           {faq.question}
         </span>
         <motion.span
           animate={{ rotate: open ? 180 : 0 }}
           transition={{ duration: 0.25, ease: "easeInOut" }}
-          className="flex-shrink-0 text-slate-400 group-hover:text-cyan-500 transition-colors duration-200"
+          className="flex-shrink-0 text-slate-400"
         >
           <ChevronDown size={20} />
         </motion.span>
@@ -87,7 +84,7 @@ function FaqItem({ faq }: { faq: (typeof faqs)[0] }) {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="px-6 pb-5 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-4">
+            <div className="text-slate pt-4 mt-4 text-sm leading-relaxed border-t border-slate-100">
               {faq.answer}
             </div>
           </motion.div>
@@ -97,110 +94,77 @@ function FaqItem({ faq }: { faq: (typeof faqs)[0] }) {
   );
 }
 
-// ─── Animated Input ───────────────────────────────────────────────────────────
+// ─── Field components ─────────────────────────────────────────────────────────
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   id: string;
 }
 
-function AnimatedInput({ label, id, ...props }: InputProps) {
+function FormInput({ label, id, ...props }: InputProps) {
   const [focused, setFocused] = useState(false);
-
   return (
-    <div className="relative">
-      <label
-        htmlFor={id}
-        className="block text-sm font-medium text-slate-700 mb-1.5"
-      >
+    <div>
+      <label htmlFor={id} className="block text-sm font-medium text-navy mb-1.5">
         {label}
       </label>
-      <div className="relative">
-        <input
-          id={id}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
-          className="w-full px-4 py-3 rounded-xl border bg-white text-navy placeholder-slate-400 text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-cyan-300/40"
-          style={{
-            borderColor: focused ? "#06b6d4" : "#e2e8f0",
-            boxShadow: focused
-              ? "0 0 0 3px rgba(6,182,212,0.12), 0 1px 3px rgba(0,0,0,0.06)"
-              : "0 1px 3px rgba(0,0,0,0.04)",
-          }}
-          {...props}
-        />
-        <motion.span
-          animate={{ scaleX: focused ? 1 : 0 }}
-          initial={{ scaleX: 0 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-cyan-400 to-violet-500 rounded-b-xl origin-left"
-        />
-      </div>
+      <input
+        id={id}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        className="w-full px-4 py-3 rounded-xl border bg-white text-navy placeholder-slate-400 text-sm outline-none transition-all duration-200"
+        style={{
+          borderColor: focused ? "#06b6d4" : "#e2e8f0",
+          boxShadow: focused
+            ? "0 0 0 3px rgba(6,182,212,0.12), 0 1px 3px rgba(0,0,0,0.06)"
+            : "0 1px 3px rgba(0,0,0,0.04)",
+        }}
+        {...props}
+      />
     </div>
   );
 }
 
-// ─── Animated Textarea ────────────────────────────────────────────────────────
-
-interface TextareaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
   id: string;
 }
 
-function AnimatedTextarea({ label, id, ...props }: TextareaProps) {
+function FormTextarea({ label, id, ...props }: TextareaProps) {
   const [focused, setFocused] = useState(false);
-
   return (
-    <div className="relative">
-      <label
-        htmlFor={id}
-        className="block text-sm font-medium text-slate-700 mb-1.5"
-      >
+    <div>
+      <label htmlFor={id} className="block text-sm font-medium text-navy mb-1.5">
         {label}
       </label>
-      <div className="relative">
-        <textarea
-          id={id}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
-          rows={4}
-          className="w-full px-4 py-3 rounded-xl border bg-white text-navy placeholder-slate-400 text-sm outline-none transition-all duration-200 resize-none"
-          style={{
-            borderColor: focused ? "#06b6d4" : "#e2e8f0",
-            boxShadow: focused
-              ? "0 0 0 3px rgba(6,182,212,0.12), 0 1px 3px rgba(0,0,0,0.06)"
-              : "0 1px 3px rgba(0,0,0,0.04)",
-          }}
-          {...props}
-        />
-        <motion.span
-          animate={{ scaleX: focused ? 1 : 0 }}
-          initial={{ scaleX: 0 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-cyan-400 to-violet-500 rounded-b-xl origin-left"
-        />
-      </div>
+      <textarea
+        id={id}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        rows={4}
+        className="w-full px-4 py-3 rounded-xl border bg-white text-navy placeholder-slate-400 text-sm outline-none transition-all duration-200 resize-none"
+        style={{
+          borderColor: focused ? "#06b6d4" : "#e2e8f0",
+          boxShadow: focused
+            ? "0 0 0 3px rgba(6,182,212,0.12), 0 1px 3px rgba(0,0,0,0.06)"
+            : "0 1px 3px rgba(0,0,0,0.04)",
+        }}
+        {...props}
+      />
     </div>
   );
 }
-
-// ─── Animated Select ──────────────────────────────────────────────────────────
 
 interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label: string;
   id: string;
 }
 
-function AnimatedSelect({ label, id, children, ...props }: SelectProps) {
+function FormSelect({ label, id, children, ...props }: SelectProps) {
   const [focused, setFocused] = useState(false);
-
   return (
-    <div className="relative">
-      <label
-        htmlFor={id}
-        className="block text-sm font-medium text-slate-700 mb-1.5"
-      >
+    <div>
+      <label htmlFor={id} className="block text-sm font-medium text-navy mb-1.5">
         {label}
       </label>
       <div className="relative">
@@ -223,12 +187,6 @@ function AnimatedSelect({ label, id, children, ...props }: SelectProps) {
           size={16}
           className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
         />
-        <motion.span
-          animate={{ scaleX: focused ? 1 : 0 }}
-          initial={{ scaleX: 0 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-cyan-400 to-violet-500 rounded-b-xl origin-left"
-        />
       </div>
     </div>
   );
@@ -241,16 +199,13 @@ function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
-    email: "",
-    company: "",
+    phone: "",
+    businessType: "",
     message: "",
-    budget: "",
   });
 
   function handleChange(
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
@@ -258,59 +213,44 @@ function ContactForm() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    // Simulate network delay
-    await new Promise((r) => setTimeout(r, 1400));
+    await new Promise((r) => setTimeout(r, 1500));
     setLoading(false);
     setSubmitted(true);
   }
 
   return (
-    <div className="glass rounded-2xl glow-cyan p-8 border border-slate-200/60">
+    <div className="card p-7">
       <AnimatePresence mode="wait">
         {submitted ? (
           <motion.div
             key="success"
-            initial={{ opacity: 0, scale: 0.92 }}
+            initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col items-center justify-center text-center py-12 gap-5"
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col items-center justify-center text-center py-14 gap-5"
           >
             <motion.div
-              initial={{ scale: 0, rotate: -20 }}
+              initial={{ scale: 0, rotate: -15 }}
               animate={{ scale: 1, rotate: 0 }}
-              transition={{
-                delay: 0.1,
-                type: "spring",
-                stiffness: 260,
-                damping: 18,
-              }}
+              transition={{ delay: 0.1, type: "spring", stiffness: 260, damping: 18 }}
               className="w-16 h-16 rounded-full bg-cyan-50 flex items-center justify-center"
             >
               <CheckCircle2 size={36} className="text-cyan-500" />
             </motion.div>
             <div>
-              <h3 className="text-xl font-bold text-navy mb-2">
-                Message sent!
-              </h3>
-              <p className="text-slate-500 text-sm leading-relaxed max-w-xs mx-auto">
-                Thanks for reaching out. We typically reply within 2 hours
-                during business hours. Check your inbox soon.
+              <h3 className="text-xl font-bold text-navy mb-2">You&apos;re booked in!</h3>
+              <p className="text-slate text-sm leading-relaxed max-w-xs mx-auto">
+                We&apos;ll be in touch within 2 hours to confirm your free demo.
               </p>
             </div>
             <button
               onClick={() => {
                 setSubmitted(false);
-                setForm({
-                  name: "",
-                  email: "",
-                  company: "",
-                  message: "",
-                  budget: "",
-                });
+                setForm({ name: "", phone: "", businessType: "", message: "" });
               }}
               className="text-sm text-cyan-600 hover:text-cyan-700 font-medium transition-colors duration-150 underline underline-offset-2"
             >
-              Send another message
+              Submit another enquiry
             </button>
           </motion.div>
         ) : (
@@ -323,108 +263,85 @@ function ContactForm() {
             className="flex flex-col gap-5"
           >
             <div>
-              <h2 className="text-2xl font-bold text-navy mb-1">
-                Send us a message
-              </h2>
-              <p className="text-slate-500 text-sm">
-                Tell us about your project and we&apos;ll be in touch fast.
+              <h2 className="text-2xl font-bold text-navy mb-1">Book your free demo</h2>
+              <p className="text-slate text-sm">
+                Takes 2 minutes. We&apos;ll confirm within 2 hours.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <AnimatedInput
-                label="Your name"
-                id="name"
-                name="name"
-                type="text"
-                placeholder="Jane Smith"
-                value={form.name}
-                onChange={handleChange}
-                required
-              />
-              <AnimatedInput
-                label="Work email"
-                id="email"
-                name="email"
-                type="email"
-                placeholder="jane@company.com"
-                value={form.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <AnimatedInput
-              label="Company (optional)"
-              id="company"
-              name="company"
+            <FormInput
+              label="Your name *"
+              id="name"
+              name="name"
               type="text"
-              placeholder="Acme Inc."
-              value={form.company}
-              onChange={handleChange}
-            />
-
-            <AnimatedTextarea
-              label="Tell us about your project"
-              id="message"
-              name="message"
-              placeholder="We're looking to automate our lead qualification process and connect HubSpot to our internal tools..."
-              value={form.message}
+              placeholder="John Smith"
+              value={form.name}
               onChange={handleChange}
               required
             />
 
-            <AnimatedSelect
-              label="Estimated budget"
-              id="budget"
-              name="budget"
-              value={form.budget}
+            <FormInput
+              label="Phone number *"
+              id="phone"
+              name="phone"
+              type="tel"
+              placeholder="+44 7700 900 123"
+              value={form.phone}
+              onChange={handleChange}
+              required
+            />
+
+            <FormSelect
+              label="Business type *"
+              id="businessType"
+              name="businessType"
+              value={form.businessType}
               onChange={handleChange}
               required
             >
-              <option value="" disabled>
-                Select a budget range
-              </option>
-              <option value="under-1k">Under £1,000</option>
-              <option value="1k-5k">£1,000 – £5,000</option>
-              <option value="5k-15k">£5,000 – £15,000</option>
-              <option value="15k-plus">£15,000+</option>
-              <option value="unsure">Not sure yet</option>
-            </AnimatedSelect>
+              <option value="" disabled>Select your trade or business</option>
+              <option value="plumber">Plumber</option>
+              <option value="electrician">Electrician</option>
+              <option value="builder">Builder</option>
+              <option value="roofer">Roofer</option>
+              <option value="landscaper">Landscaper</option>
+              <option value="other-trades">Other trades</option>
+              <option value="service-business">Service business</option>
+              <option value="other">Other</option>
+            </FormSelect>
+
+            <FormTextarea
+              label="Anything else? (optional)"
+              id="message"
+              name="message"
+              placeholder="How many calls do you typically miss in a week? Any questions before the demo?"
+              value={form.message}
+              onChange={handleChange}
+            />
 
             <motion.button
               type="submit"
               disabled={loading}
               whileHover={{ scale: loading ? 1 : 1.02 }}
               whileTap={{ scale: loading ? 1 : 0.98 }}
-              className="relative flex items-center justify-center gap-2 w-full py-3.5 rounded-xl font-semibold text-sm text-white overflow-hidden disabled:opacity-80 transition-opacity duration-200"
-              style={{
-                background: "linear-gradient(135deg, #06b6d4, #8b5cf6)",
-              }}
+              className="btn-primary flex items-center justify-center gap-2 w-full py-3.5 disabled:opacity-75"
             >
               {loading ? (
                 <>
                   <motion.span
                     animate={{ rotate: 360 }}
-                    transition={{
-                      repeat: Infinity,
-                      duration: 0.8,
-                      ease: "linear",
-                    }}
+                    transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
                     className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full"
                   />
                   <span>Sending…</span>
                 </>
               ) : (
-                <>
-                  <Send size={16} />
-                  <span>Send Message</span>
-                </>
+                <span>Book My Free Demo</span>
               )}
             </motion.button>
 
             <p className="text-center text-xs text-slate-400">
-              No spam, ever. We respect your privacy.
+              No commitment. No contracts. Just a quick demo.
             </p>
           </motion.form>
         )}
@@ -439,49 +356,31 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* Hero */}
-      <section className="relative grid-bg pt-32 pb-20 px-6">
-        {/* Decorative blobs */}
-        <div
-          className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(6,182,212,0.08) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%)",
-          }}
-        />
-
-        <div className="relative max-w-4xl mx-auto text-center">
+      <section className="pt-32 pb-20 px-6 bg-slate-50 border-b border-slate-100">
+        <div className="max-w-4xl mx-auto text-center">
           <SectionReveal>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold text-cyan-700 bg-cyan-50 border border-cyan-200 mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-pulse" />
-              Get in touch
+              Free demo — no commitment
             </span>
           </SectionReveal>
 
           <SectionReveal delay={0.1}>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-navy leading-tight tracking-tight mb-5">
-              Let&apos;s Build{" "}
-              <span className="gradient-text">Something Amazing</span>
+              Don&apos;t miss another job —<br className="hidden sm:block" /> even when you miss the call
             </h1>
           </SectionReveal>
 
           <SectionReveal delay={0.2}>
-            <p className="text-slate-500 text-lg max-w-2xl mx-auto leading-relaxed">
-              Ready to eliminate repetitive work and unlock real business
-              growth? Drop us a message — we reply fast.
+            <p className="text-slate text-lg max-w-2xl mx-auto leading-relaxed">
+              Book a free demo and we&apos;ll show you exactly how missed calls turn into booked jobs, live with your actual phone number.
             </p>
           </SectionReveal>
         </div>
       </section>
 
       {/* Two-column layout */}
-      <section className="px-6 pb-24 max-w-6xl mx-auto">
+      <section className="px-6 py-20 max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10 items-start">
           {/* Left — Contact Form */}
           <SectionReveal direction="left">
@@ -490,161 +389,68 @@ export default function ContactPage() {
 
           {/* Right — Info Cards */}
           <div className="flex flex-col gap-5">
-            {/* Contact info */}
+            {/* Email card */}
             <SectionReveal direction="right" delay={0.05}>
-              <div className="glass rounded-2xl border border-slate-200/60 p-6 flex flex-col gap-4">
-                <h3 className="font-bold text-navy text-base">
+              <div className="card p-7">
+                <h3 className="font-bold text-navy text-sm uppercase tracking-wide mb-4">
                   Contact details
                 </h3>
-
-                {[
-                  {
-                    icon: <Mail size={18} className="text-cyan-500" />,
-                    label: "Email us",
-                    value: "hello@lynksystems.uk",
-                    href: "mailto:hello@lynksystems.uk",
-                  },
-                  {
-                    icon: <Phone size={18} className="text-cyan-500" />,
-                    label: "Call us",
-                    value: "+44 (0) 7700 900 123",
-                    href: "tel:+447700900123",
-                  },
-                  {
-                    icon: <MapPin size={18} className="text-cyan-500" />,
-                    label: "Location",
-                    value: "United Kingdom",
-                    href: null,
-                  },
-                ].map((item) => (
-                  <div key={item.label} className="flex items-start gap-3">
-                    <span className="mt-0.5 w-8 h-8 rounded-xl bg-cyan-50 flex items-center justify-center flex-shrink-0">
-                      {item.icon}
+                <div className="flex flex-col gap-4">
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 w-9 h-9 rounded-xl bg-cyan-50 flex items-center justify-center flex-shrink-0">
+                      <Mail size={17} className="text-cyan-600" />
                     </span>
                     <div>
-                      <p className="text-xs text-slate-400 font-medium mb-0.5">
-                        {item.label}
-                      </p>
-                      {item.href ? (
-                        <a
-                          href={item.href}
-                          className="text-sm font-semibold text-navy hover:text-cyan-600 transition-colors duration-150"
-                        >
-                          {item.value}
-                        </a>
-                      ) : (
-                        <p className="text-sm font-semibold text-navy">
-                          {item.value}
-                        </p>
-                      )}
+                      <p className="text-xs text-slate-400 font-medium mb-0.5">Email us</p>
+                      <a
+                        href="mailto:hello@lynksystems.uk"
+                        className="text-sm font-semibold text-navy hover:text-cyan-600 transition-colors duration-150"
+                      >
+                        hello@lynksystems.uk
+                      </a>
                     </div>
                   </div>
-                ))}
+
+                  <div className="flex items-start gap-3">
+                    <span className="mt-0.5 w-9 h-9 rounded-xl bg-cyan-50 flex items-center justify-center flex-shrink-0">
+                      <MapPin size={17} className="text-cyan-600" />
+                    </span>
+                    <div>
+                      <p className="text-xs text-slate-400 font-medium mb-0.5">Location</p>
+                      <p className="text-sm font-semibold text-navy">United Kingdom</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </SectionReveal>
 
             {/* Response time badge */}
             <SectionReveal direction="right" delay={0.1}>
-              <div className="flex items-center gap-3 px-5 py-3.5 rounded-2xl border border-cyan-200 bg-cyan-50">
-                <Clock size={16} className="text-cyan-600 flex-shrink-0" />
-                <p className="text-sm text-cyan-800 font-medium">
-                  Typical response time:{" "}
-                  <span className="font-bold">under 2 hours</span>
+              <div className="flex items-center gap-3 px-5 py-4 rounded-2xl border border-cyan-200 bg-cyan-50">
+                <Phone size={16} className="text-cyan-600 flex-shrink-0" />
+                <p className="text-sm text-cyan-900 font-medium">
+                  We reply within{" "}
+                  <span className="font-bold">2 hours</span>{" "}
+                  — usually much faster.
                 </p>
               </div>
             </SectionReveal>
 
-            {/* Book a call CTA */}
+            {/* ROI callout — navy bg */}
             <SectionReveal direction="right" delay={0.15}>
-              <div className="rounded-2xl overflow-hidden glow-cyan border border-cyan-200/60">
-                <div
-                  className="p-6 text-white"
-                  style={{
-                    background: "linear-gradient(135deg, #0f172a, #1e293b)",
-                  }}
+              <div className="rounded-2xl bg-navy p-7">
+                <p className="text-white text-sm leading-relaxed mb-5">
+                  If you miss just 3 calls a day at £80 a job, that&apos;s over{" "}
+                  <span className="font-bold text-cyan-400">£7,200 in lost revenue</span>{" "}
+                  every month. Our plans start from £199/month.
+                </p>
+                <Link
+                  href="/pricing"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-cyan-400 transition-colors duration-150"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center mb-4">
-                    <Calendar size={18} className="text-cyan-400" />
-                  </div>
-                  <h3 className="font-bold text-lg mb-1.5">Book a free call</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed mb-5">
-                    30 minutes. No sales pitch. Just an honest look at how
-                    automation could transform your workflow.
-                  </p>
-                  <Link
-                    href="https://cal.com/lynksystems"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <motion.span
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm text-navy transition-all duration-200 cursor-pointer"
-                      style={{ background: "#06b6d4" }}
-                    >
-                      Schedule a call
-                      <ArrowRight size={15} />
-                    </motion.span>
-                  </Link>
-                </div>
-              </div>
-            </SectionReveal>
-
-            {/* Decorative map placeholder */}
-            <SectionReveal direction="right" delay={0.2}>
-              <div className="rounded-2xl overflow-hidden border border-slate-200/60 h-[160px] relative">
-                {/* Stylised map-like grid */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: "#f8fafc",
-                    backgroundImage: `
-                      linear-gradient(rgba(6,182,212,0.06) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(6,182,212,0.06) 1px, transparent 1px)
-                    `,
-                    backgroundSize: "24px 24px",
-                  }}
-                />
-                {/* "Roads" */}
-                <svg
-                  className="absolute inset-0 w-full h-full opacity-30"
-                  viewBox="0 0 380 160"
-                  preserveAspectRatio="xMidYMid slice"
-                >
-                  <path
-                    d="M0 80 Q95 50 190 80 T380 80"
-                    stroke="#06b6d4"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeDasharray="6 4"
-                  />
-                  <path
-                    d="M190 0 Q210 80 190 160"
-                    stroke="#8b5cf6"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeDasharray="6 4"
-                  />
-                </svg>
-                {/* Pin */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <motion.div
-                    animate={{ y: [0, -4, 0] }}
-                    transition={{
-                      repeat: Infinity,
-                      duration: 2.5,
-                      ease: "easeInOut",
-                    }}
-                    className="flex flex-col items-center gap-1"
-                  >
-                    <div className="w-9 h-9 rounded-full bg-cyan-500 flex items-center justify-center shadow-lg shadow-cyan-500/40">
-                      <MapPin size={18} className="text-white" />
-                    </div>
-                    <span className="text-xs font-semibold text-navy bg-white/80 px-2 py-0.5 rounded-full shadow-sm border border-slate-200">
-                      United Kingdom
-                    </span>
-                  </motion.div>
-                </div>
+                  See pricing
+                  <ArrowRight size={15} />
+                </Link>
               </div>
             </SectionReveal>
           </div>
@@ -656,17 +462,15 @@ export default function ContactPage() {
         <SectionReveal>
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-navy mb-4">
-              Frequently asked{" "}
-              <span className="gradient-text">questions</span>
+              Common questions
             </h2>
-            <p className="text-slate-500 text-base max-w-xl mx-auto">
-              Everything you need to know before getting started. Can&apos;t
-              find your answer?{" "}
+            <p className="text-slate text-base max-w-xl mx-auto">
+              Everything you need to know before booking.{" "}
               <a
                 href="mailto:hello@lynksystems.uk"
                 className="text-cyan-600 hover:text-cyan-700 font-medium transition-colors duration-150"
               >
-                Just ask us.
+                Still unsure? Just ask.
               </a>
             </p>
           </div>
@@ -679,6 +483,18 @@ export default function ContactPage() {
             </SectionReveal>
           ))}
         </div>
+
+        <SectionReveal delay={0.4}>
+          <div className="mt-12 text-center">
+            <p className="text-slate text-sm mb-4">
+              Ready to stop losing jobs to missed calls?
+            </p>
+            <a href="#top" className="btn-cyan inline-flex items-center gap-2">
+              Book my free demo
+              <ArrowRight size={15} />
+            </a>
+          </div>
+        </SectionReveal>
       </section>
     </main>
   );

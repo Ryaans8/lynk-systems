@@ -3,93 +3,65 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import {
-  Lightbulb,
-  ShieldCheck,
-  Eye,
+  MessageSquare,
+  Brain,
+  UserCheck,
+  Layers,
+  Globe,
   TrendingUp,
+  ShieldCheck,
   ArrowRight,
-  Zap,
 } from "lucide-react";
 import { SectionReveal } from "@/components/section-reveal";
-import { AnimatedCounter } from "@/components/animated-counter";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
+const whatWeDo = [
+  {
+    icon: MessageSquare,
+    title: "Instant Response",
+    description:
+      "Every missed call triggers an automatic text message within seconds — before the customer has time to call a competitor.",
+  },
+  {
+    icon: Brain,
+    title: "Smart Conversation",
+    description:
+      "AI handles the full enquiry: answering questions, qualifying the lead, and booking jobs directly into your calendar.",
+  },
+  {
+    icon: UserCheck,
+    title: "You Stay in Control",
+    description:
+      "Every conversation summary is sent straight to you. You see everything, decide everything — the AI just handles the legwork.",
+  },
+];
+
 const values = [
   {
-    icon: Lightbulb,
-    title: "Innovation",
+    icon: Layers,
+    title: "Simple by design",
     description:
-      "We stay ahead of the AI curve so you don't have to. Every solution we build leverages the latest models and orchestration patterns.",
-    color: "from-cyan-400 to-cyan-600",
-    bg: "bg-cyan-50",
-    iconColor: "text-cyan-600",
+      "No jargon. No complexity. It just works.",
   },
   {
-    icon: ShieldCheck,
-    title: "Reliability",
+    icon: Globe,
+    title: "Built for the UK",
     description:
-      "Automation that breaks is worse than no automation. We engineer for uptime, graceful fallbacks, and observability from day one.",
-    color: "from-violet-400 to-violet-600",
-    bg: "bg-violet-50",
-    iconColor: "text-violet-600",
-  },
-  {
-    icon: Eye,
-    title: "Transparency",
-    description:
-      "No black boxes. We explain every workflow we build, document every integration, and keep you in control of your own systems.",
-    color: "from-sky-400 to-sky-600",
-    bg: "bg-sky-50",
-    iconColor: "text-sky-600",
+      "Designed around how UK businesses and customers communicate.",
   },
   {
     icon: TrendingUp,
-    title: "Results-Driven",
+    title: "Results first",
     description:
-      "ROI is not a buzzword — it's a deliverable. We measure success by time saved, costs reduced, and revenue enabled.",
-    color: "from-emerald-400 to-emerald-600",
-    bg: "bg-emerald-50",
-    iconColor: "text-emerald-600",
-  },
-];
-
-const team = [
-  {
-    initials: "AK",
-    name: "Alex Kim",
-    role: "Founder & CEO",
-    bio: "Former ML engineer at two Fortune 500s. Built Lynk to make enterprise-grade AI accessible to every business.",
-    color: "bg-cyan-500",
+      "If it doesn't recover lost revenue, it's not doing its job.",
   },
   {
-    initials: "MR",
-    name: "Maya Rivera",
-    role: "Head of Automation",
-    bio: "10+ years in workflow engineering. Has architected over 300 production automations across finance, healthcare, and e-commerce.",
-    color: "bg-violet-500",
+    icon: ShieldCheck,
+    title: "Honest and transparent",
+    description:
+      "No hidden fees, no long contracts, no surprises.",
   },
-  {
-    initials: "JS",
-    name: "James Sullivan",
-    role: "Lead AI Engineer",
-    bio: "Specialises in LLM fine-tuning, RAG pipelines, and multi-agent orchestration. Turns bleeding-edge research into shipping products.",
-    color: "bg-sky-500",
-  },
-  {
-    initials: "PL",
-    name: "Priya Lal",
-    role: "Client Success Lead",
-    bio: "Ensures every deployment exceeds expectations. Priya owns the relationship from kickoff to post-launch optimisation.",
-    color: "bg-emerald-500",
-  },
-];
-
-const stats = [
-  { label: "Years in Business", target: 5, suffix: "+" },
-  { label: "Clients Served", target: 150, suffix: "+" },
-  { label: "Automations Deployed", target: 500, suffix: "+" },
-  { label: "Hours Saved", target: 50000, suffix: "+" },
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -97,112 +69,98 @@ const stats = [
 export default function AboutPage() {
   return (
     <main className="bg-white">
+
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden grid-bg py-28 md:py-36">
-        {/* Soft radial glow */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 flex items-center justify-center"
-        >
-          <div className="h-[520px] w-[520px] rounded-full bg-cyan-400/10 blur-[120px]" />
-        </div>
-
-        <div className="relative mx-auto max-w-4xl px-6 text-center">
+      <section className="py-24 md:py-32">
+        <div className="mx-auto max-w-4xl px-6 text-center">
           <SectionReveal>
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan-200 bg-cyan-50 px-4 py-1.5 text-sm font-medium text-cyan-700">
-              <Zap size={14} className="fill-cyan-500 text-cyan-500" />
-              Our Story
-            </div>
-          </SectionReveal>
-
-          <SectionReveal delay={0.1}>
-            <h1 className="text-4xl font-bold tracking-tight text-[#0f172a] sm:text-5xl md:text-6xl">
-              About{" "}
-              <span className="gradient-text">Lynk Systems</span>
+            <h1 className="text-4xl font-bold tracking-tight text-navy sm:text-5xl md:text-6xl">
+              We built Lynk Systems because we saw good businesses losing money for no reason
             </h1>
           </SectionReveal>
-
-          <SectionReveal delay={0.2}>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[#64748b] sm:text-xl">
-              We believe every business deserves the power of AI automation —
-              not just the enterprises with hundred-person engineering teams.
+          <SectionReveal delay={0.1}>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate sm:text-xl">
+              Missed calls. Slow replies. Lost jobs. It doesn't have to be this way.
             </p>
           </SectionReveal>
         </div>
       </section>
 
-      {/* ── Story ────────────────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-        <div className="grid gap-12 md:grid-cols-2 md:items-center">
-          <SectionReveal direction="right">
-            <div className="glass rounded-2xl p-8 shadow-sm">
-              <div className="mb-6 h-1.5 w-16 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500" />
-              <h2 className="mb-4 text-3xl font-bold text-[#0f172a] md:text-4xl">
-                Why we built{" "}
-                <span className="gradient-text">Lynk</span>
-              </h2>
-              <p className="mb-4 text-[#64748b] leading-relaxed">
-                In 2020 we watched promising AI tools stall at the proof-of-concept
-                stage — not because the technology wasn't ready, but because
-                bridging complex AI capabilities to practical, day-to-day
-                business operations required expertise most teams simply didn't
-                have.
-              </p>
-              <p className="text-[#64748b] leading-relaxed">
-                Lynk Systems was founded to close that gap. We combine deep AI
-                engineering with a relentless focus on business outcomes, so our
-                clients skip the experimentation phase and go straight to
-                measurable results.
-              </p>
-            </div>
-          </SectionReveal>
+      {/* ── Founding Story ───────────────────────────────────────────────── */}
+      <section className="section-alt py-20 md:py-28">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid gap-12 md:grid-cols-2 md:items-start">
 
-          <SectionReveal direction="left" delay={0.15}>
-            <div className="space-y-5">
-              {[
-                {
-                  year: "2020",
-                  text: "Founded with a mission to democratise AI for SMBs.",
-                },
-                {
-                  year: "2022",
-                  text: "Crossed 50 clients; launched our flagship workflow automation suite.",
-                },
-                {
-                  year: "2023",
-                  text: "Expanded into multi-agent orchestration and LLM fine-tuning.",
-                },
-                {
-                  year: "2025",
-                  text: "150+ clients, 500+ automations in production, and counting.",
-                },
-              ].map(({ year, text }) => (
-                <div key={year} className="flex gap-4">
-                  <div className="flex h-10 w-16 shrink-0 items-center justify-center rounded-xl bg-cyan-50 text-sm font-bold text-cyan-600">
-                    {year}
-                  </div>
-                  <p className="text-[#64748b] leading-relaxed">{text}</p>
-                </div>
-              ))}
-            </div>
-          </SectionReveal>
+            {/* Left: story copy */}
+            <SectionReveal direction="right">
+              <div>
+                <h2 className="mb-6 text-3xl font-bold text-navy md:text-4xl">
+                  Our founding story
+                </h2>
+                <p className="mb-4 leading-relaxed text-slate">
+                  Most businesses don't realise how many customers they lose from missed calls
+                  and delayed responses. We saw this happening every day — and experienced it
+                  ourselves. Enquiries going unanswered, voicemails ignored, potential jobs
+                  disappearing.
+                </p>
+                <p className="mb-4 leading-relaxed text-slate">
+                  Lynk Systems was built to solve a simple but expensive problem. With instant
+                  AI responses, businesses don't need to lose money anymore because they were
+                  too busy to pick up the phone.
+                </p>
+                <p className="leading-relaxed text-slate">
+                  We handle the conversation — respond instantly to missed calls, answer
+                  customer questions, and book jobs directly into your calendar — so you never
+                  miss an opportunity again.
+                </p>
+              </div>
+            </SectionReveal>
+
+            {/* Right: highlighted quote */}
+            <SectionReveal direction="left" delay={0.15}>
+              <div className="card p-7 card-hover bg-navy rounded-2xl">
+                <p className="text-2xl font-semibold leading-snug text-white md:text-3xl">
+                  "The best time to respond to a customer is immediately. The second best time
+                  is right now."
+                </p>
+              </div>
+            </SectionReveal>
+
+          </div>
         </div>
       </section>
 
-      {/* ── Stats bar ────────────────────────────────────────────────────── */}
-      <section className="bg-[#0f172a] py-16">
+      {/* ── What We Do ───────────────────────────────────────────────────── */}
+      <section className="py-20 md:py-28">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-            {stats.map(({ label, target, suffix }, i) => (
-              <SectionReveal key={label} delay={i * 0.1}>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-white md:text-5xl">
-                    <AnimatedCounter target={target} suffix={suffix} duration={2.2} />
+          <SectionReveal>
+            <div className="mb-14 text-center">
+              <h2 className="text-3xl font-bold text-navy md:text-4xl">
+                What we do
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-slate">
+                Three things, done properly.
+              </p>
+            </div>
+          </SectionReveal>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {whatWeDo.map(({ icon: Icon, title, description }, i) => (
+              <SectionReveal key={title} delay={i * 0.1}>
+                <motion.div
+                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                  className="card p-7 card-hover h-full flex flex-col"
+                >
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-50">
+                    <Icon size={22} className="text-cyan-600" />
                   </div>
-                  <div className="mt-2 text-sm font-medium text-[#64748b]">
-                    {label}
-                  </div>
-                </div>
+                  <h3 className="mb-3 text-lg font-semibold text-navy">
+                    {title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-slate">
+                    {description}
+                  </p>
+                </motion.div>
               </SectionReveal>
             ))}
           </div>
@@ -210,82 +168,37 @@ export default function AboutPage() {
       </section>
 
       {/* ── Values ───────────────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-        <SectionReveal>
-          <div className="mb-14 text-center">
-            <h2 className="text-3xl font-bold text-[#0f172a] md:text-4xl">
-              What we stand for
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-[#64748b]">
-              Four principles that guide every engagement, every line of code,
-              and every conversation with a client.
-            </p>
-          </div>
-        </SectionReveal>
-
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {values.map(
-            ({ icon: Icon, title, description, bg, iconColor }, i) => (
-              <SectionReveal key={title} delay={i * 0.1}>
-                <motion.div
-                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                  className="glass flex h-full flex-col rounded-2xl p-7 shadow-sm"
-                >
-                  <div
-                    className={`mb-5 flex h-12 w-12 items-center justify-center rounded-xl ${bg}`}
-                  >
-                    <Icon size={22} className={iconColor} />
-                  </div>
-                  <h3 className="mb-3 text-lg font-semibold text-[#0f172a]">
-                    {title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-[#64748b]">
-                    {description}
-                  </p>
-                </motion.div>
-              </SectionReveal>
-            )
-          )}
-        </div>
-      </section>
-
-      {/* ── Team ─────────────────────────────────────────────────────────── */}
-      <section className="grid-bg py-20 md:py-28">
+      <section className="section-alt py-20 md:py-28">
         <div className="mx-auto max-w-6xl px-6">
           <SectionReveal>
             <div className="mb-14 text-center">
-              <h2 className="text-3xl font-bold text-[#0f172a] md:text-4xl">
-                The team behind the technology
+              <h2 className="text-3xl font-bold text-navy md:text-4xl">
+                What we stand for
               </h2>
-              <p className="mx-auto mt-4 max-w-xl text-[#64748b]">
-                Builders, engineers, and strategists obsessed with making AI
-                work in the real world.
+              <p className="mx-auto mt-4 max-w-xl text-slate">
+                The principles behind every decision we make.
               </p>
             </div>
           </SectionReveal>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {team.map(({ initials, name, role, bio, color }, i) => (
-              <SectionReveal key={name} delay={i * 0.1}>
+          <div className="grid gap-6 sm:grid-cols-2">
+            {values.map(({ icon: Icon, title, description }, i) => (
+              <SectionReveal key={title} delay={i * 0.1}>
                 <motion.div
                   whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                  className="glass flex flex-col items-center rounded-2xl p-8 text-center shadow-sm"
+                  className="card p-7 card-hover flex gap-5"
                 >
-                  {/* Avatar */}
-                  <div
-                    className={`mb-5 flex h-16 w-16 items-center justify-center rounded-full ${color} text-xl font-bold text-white shadow-md`}
-                  >
-                    {initials}
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-cyan-50">
+                    <Icon size={22} className="text-cyan-600" />
                   </div>
-                  <h3 className="text-base font-semibold text-[#0f172a]">
-                    {name}
-                  </h3>
-                  <span className="mb-3 mt-1 text-xs font-medium text-cyan-600">
-                    {role}
-                  </span>
-                  <p className="text-sm leading-relaxed text-[#64748b]">
-                    {bio}
-                  </p>
+                  <div>
+                    <h3 className="mb-2 text-lg font-semibold text-navy">
+                      {title}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-slate">
+                      {description}
+                    </p>
+                  </div>
                 </motion.div>
               </SectionReveal>
             ))}
@@ -294,33 +207,23 @@ export default function AboutPage() {
       </section>
 
       {/* ── CTA ──────────────────────────────────────────────────────────── */}
-      <section className="py-20 md:py-28">
+      <section className="bg-navy py-20 md:py-28">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <SectionReveal>
-            <div className="glass rounded-2xl px-8 py-14 shadow-sm">
-              <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-400 to-violet-500 shadow-lg">
-                <Zap size={24} className="text-white" />
-              </div>
-              <h2 className="mb-4 text-3xl font-bold text-[#0f172a] md:text-4xl">
-                Ready to automate{" "}
-                <span className="gradient-text">smarter</span>?
-              </h2>
-              <p className="mx-auto mb-8 max-w-lg text-[#64748b]">
-                Let's talk about where AI automation can make the biggest impact
-                in your business. No jargon, no pressure — just a genuine
-                conversation about your goals.
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-cyan-600 px-7 py-3.5 text-base font-semibold text-white shadow-md transition hover:from-cyan-600 hover:to-cyan-700 hover:shadow-cyan-200/60 hover:shadow-lg"
-              >
-                Get in touch
-                <ArrowRight size={18} />
-              </Link>
-            </div>
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">
+              Ready to stop missing out?
+            </h2>
+            <p className="mx-auto mb-8 max-w-lg text-lg text-white/70">
+              See how Lynk Systems works for your business — no pressure, no jargon.
+            </p>
+            <Link href="/contact" className="btn-primary inline-flex items-center gap-2">
+              Book a Free Demo
+              <ArrowRight size={18} />
+            </Link>
           </SectionReveal>
         </div>
       </section>
+
     </main>
   );
 }
