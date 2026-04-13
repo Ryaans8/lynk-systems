@@ -176,10 +176,10 @@ export default function PricingPage() {
                   <motion.div
                     whileHover={{ y: isPopular ? -4 : -6 }}
                     transition={{ duration: 0.25 }}
-                    className={`relative rounded-2xl flex flex-col gap-6 card p-8 card-hover ${
+                    className={`relative rounded-2xl flex flex-col gap-6 p-8 card-hover ${
                       isPopular
-                        ? "bg-navy border-navy shadow-2xl -mt-4"
-                        : "bg-white"
+                        ? "bg-navy border border-navy shadow-2xl -mt-4"
+                        : "card"
                     }`}
                   >
                     {/* Popular badge */}
