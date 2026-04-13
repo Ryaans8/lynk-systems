@@ -177,16 +177,16 @@ export default function PricingPage() {
       {/* ── Pricing Cards ────────────────────────────────────────────────── */}
       <section className="pb-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-8 items-start">
+          <div className="grid md:grid-cols-3 gap-8 items-stretch">
             {tiers.map((tier, i) => {
               const isPopular = tier.popular;
 
               return (
-                <SectionReveal key={tier.id} delay={i * 0.1}>
+                <SectionReveal key={tier.id} delay={i * 0.1} className="h-full">
                   <motion.div
                     whileHover={{ y: isPopular ? -4 : -6 }}
                     transition={{ duration: 0.25 }}
-                    className={`relative rounded-2xl flex flex-col gap-6 p-8 card-hover ${
+                    className={`relative rounded-2xl flex flex-col gap-6 p-8 card-hover h-full ${
                       isPopular
                         ? "bg-navy border border-navy shadow-2xl -mt-4"
                         : "card"
@@ -271,12 +271,12 @@ export default function PricingPage() {
                     {/* Divider */}
                     <div
                       className={`h-px ${
-                        isPopular ? "bg-white/10" : "bg-border"
+                        isPopular ? "bg-white/10" : "bg-slate-200"
                       }`}
                     />
 
                     {/* Features */}
-                    <ul className="flex flex-col gap-3">
+                    <ul className="flex flex-col gap-3 mt-auto">
                       {tier.features.map((feature) => (
                         <li key={feature} className="flex items-start gap-3 text-sm">
                           <Check
