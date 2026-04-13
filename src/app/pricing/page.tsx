@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, X, ArrowRight, Phone, Star } from "lucide-react";
+import { Check, ArrowRight, Phone, Star } from "lucide-react";
 import { SectionReveal } from "@/components/section-reveal";
 
 /* ─── Data ──────────────────────────────────────────────────────────────── */
@@ -12,41 +12,49 @@ const tiers = [
   {
     id: "starter",
     name: "Starter",
+    headline: "Never lose another lead",
     monthlyPrice: 199,
     setupFee: 300,
-    description: "Everything you need to stop missing jobs and start recovering lost revenue automatically.",
+    description:
+      "An instant WhatsApp response goes out the moment you miss a call. The AI handles the full conversation, flags emergencies, and keeps your business working 24/7.",
     popular: false,
     cta: "Get Started",
     ctaHref: "/contact",
     features: [
-      "Missed call → instant WhatsApp response",
-      "AI conversation and job qualification",
-      "Urgency detection",
-      "Summary sent to you at end of each conversation",
+      "Instant WhatsApp response",
+      "AI handles full conversation",
+      "Clean summary sent to your phone",
+      "URGENT flag for emergencies",
+      "Works 24/7 — weekends and evenings",
     ],
   },
   {
     id: "growth",
     name: "Growth",
+    headline: "Run a tighter operation",
     monthlyPrice: 299,
     setupFee: 500,
-    description: "Everything in Starter, plus calendar booking and memory — your AI remembers each customer.",
+    description:
+      "Everything in Starter, plus your AI books jobs directly into your calendar. No phone tag, no back-and-forth. It remembers returning customers and treats them accordingly.",
     popular: true,
     cta: "Get Started",
     ctaHref: "/contact",
     features: [
       "Everything in Starter",
-      "Direct calendar booking via Cal.com",
+      "Direct calendar booking (via Cal.com)",
       "Conversation memory per customer",
-      "Priority setup",
+      "Returning customer recognition",
+      "Weekly enquiry summary",
     ],
   },
   {
     id: "pro",
     name: "Pro",
+    headline: "Your business runs without you",
     monthlyPrice: 399,
     setupFee: 750,
-    description: "Full control and dedicated support — ideal for busier businesses or multiple lines.",
+    description:
+      "A fully customised system built around how you work. Within 60 days, the majority of your first contact is handled automatically — no input needed from you.",
     popular: false,
     cta: "Get Started",
     ctaHref: "/contact",
@@ -54,8 +62,10 @@ const tiers = [
       "Everything in Growth",
       "Custom conversation flows",
       "Multiple phone numbers",
-      "Priority support",
+      "Out-of-hours handling",
+      "CRM integration (Jobber, Tradify, Google Sheets)",
       "Monthly performance review",
+      "Priority support — 2-hour response",
     ],
   },
 ];
@@ -194,12 +204,19 @@ export default function PricingPage() {
 
                     {/* Header */}
                     <div>
-                      <h3
-                        className={`text-xl font-bold mb-1 ${
-                          isPopular ? "text-white" : "text-navy"
+                      <p
+                        className={`text-xs font-semibold uppercase tracking-widest mb-2 ${
+                          isPopular ? "text-cyan" : "text-cyan"
                         }`}
                       >
                         {tier.name}
+                      </p>
+                      <h3
+                        className={`text-xl font-bold mb-3 leading-snug ${
+                          isPopular ? "text-white" : "text-navy"
+                        }`}
+                      >
+                        {tier.headline}
                       </h3>
                       <p
                         className={`text-sm leading-relaxed ${

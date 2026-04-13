@@ -6,14 +6,12 @@ import {
   ArrowRight,
   Phone,
   MessageSquare,
-  Calendar,
+  FileText,
   CheckCircle2,
   Clock,
-  TrendingUp,
   AlertCircle,
 } from "lucide-react";
 import { SectionReveal } from "@/components/section-reveal";
-import { AnimatedCounter } from "@/components/animated-counter";
 
 const problems = [
   "Phone rings while you're on a job — you miss it",
@@ -26,20 +24,20 @@ const howItWorks = [
   {
     icon: Phone,
     step: "01",
-    title: "Customer calls, you miss it",
-    desc: "You're on a job, driving, or busy. The call goes unanswered.",
+    title: "Missed call detected",
+    desc: "A customer calls your number. You're on a job and can't answer. Lynk Systems detects the missed call instantly.",
   },
   {
     icon: MessageSquare,
     step: "02",
-    title: "They get an instant text back",
-    desc: "Within seconds, our AI sends a professional message and starts the conversation.",
+    title: "AI takes over on WhatsApp",
+    desc: "Within seconds the customer receives a WhatsApp message from your AI receptionist. It handles the full conversation — no human needed.",
   },
   {
-    icon: Calendar,
+    icon: FileText,
     step: "03",
-    title: "Job gets booked automatically",
-    desc: "The AI qualifies the lead, answers questions, and books directly into your calendar.",
+    title: "You get a full summary",
+    desc: "Once the conversation is complete you receive a structured summary on WhatsApp with everything you need to follow up or show up prepared.",
   },
 ];
 
@@ -85,9 +83,7 @@ export default function HomePage() {
               transition={{ duration: 0.5, delay: 0.08 }}
               className="text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight text-navy"
             >
-              Stop losing customers
-              <br />
-              to missed calls
+              Never miss another job
             </motion.h1>
 
             <motion.p
@@ -96,9 +92,10 @@ export default function HomePage() {
               transition={{ duration: 0.5, delay: 0.16 }}
               className="mt-6 text-xl text-slate leading-relaxed max-w-xl"
             >
-              When you miss a call, a customer moves on. Lynk Systems sends an
-              instant text reply, handles the conversation, and books the job —
-              without you lifting a finger.
+              Lynk Systems gives your business an AI receptionist that responds
+              to missed calls instantly on WhatsApp — qualifying the job,
+              collecting details, and sending you a summary. 24/7, no staff
+              needed.
             </motion.p>
 
             <motion.div
@@ -114,26 +111,6 @@ export default function HomePage() {
               <Link href="/demo" className="btn-outline">
                 See How It Works
               </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-6 text-sm text-slate"
-            >
-              <span className="flex items-center gap-2">
-                <CheckCircle2 size={15} className="text-cyan shrink-0" />
-                Set up in under 48 hours
-              </span>
-              <span className="flex items-center gap-2">
-                <CheckCircle2 size={15} className="text-cyan shrink-0" />
-                No contracts — cancel anytime
-              </span>
-              <span className="flex items-center gap-2">
-                <CheckCircle2 size={15} className="text-cyan shrink-0" />
-                Works with your existing number
-              </span>
             </motion.div>
           </div>
         </div>

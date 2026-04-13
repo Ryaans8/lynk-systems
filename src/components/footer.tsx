@@ -74,18 +74,10 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="mt-16 pt-8 border-t border-white/10">
           <p className="text-sm text-slate-light">
-            &copy; {new Date().getFullYear()} Lynk Systems. All rights reserved.
+            &copy; 2026 Lynk Systems. Bradford, West Yorkshire.
           </p>
-          <div className="flex items-center gap-6">
-            <Link href="/contact" className="text-sm text-slate-light hover:text-cyan transition-colors cursor-pointer">
-              Privacy Policy
-            </Link>
-            <Link href="/contact" className="text-sm text-slate-light hover:text-cyan transition-colors cursor-pointer">
-              Terms of Service
-            </Link>
-          </div>
         </div>
       </div>
     </footer>
